@@ -1,0 +1,29 @@
+.highlighted
+{
+	background-color: blue;
+}
+
+.program-unread
+{
+	color:green;
+}
+
+#code
+{
+	width: 100%;
+	height: 80px;
+
+}
+
+#send
+{
+	width: 80px;
+	height: 30px;
+	margin-top:25px;
+}
+
+#commands
+{
+	font-size: 1.3em;
+
+}
