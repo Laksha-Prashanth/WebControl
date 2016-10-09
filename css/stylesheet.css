@@ -5,9 +5,12 @@
 
 .program-unread
 {
-	color:green;
+	color:red;
 }
-
+.program-read
+{
+	color:gray;
+}
 #code
 {
 	width: 100%;

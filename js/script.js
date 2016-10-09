@@ -8,27 +8,42 @@ $(document).ready(function(){
 
 
 	initFireBase();
-	var read = firebase.database().ref('testData/read');
-read.on('value', function(snapshot) {
-  programExecuted(snapshot.val());
-});
 });
 
 function programExecuted(data)
 {
-	$('.program-unread').toggleClass('program-unread');
+  console.log('executing');
+  if(data == null)
+    return;
+  if(data.read == true)
+  {
+    var j = data.i;
+   $('#'+j).removeClass('program-unread');
+   $('#'+j).addClass('program-read');
+ }
 }
 
 function func()
 {
   var program = document.getElementById('code').value;
-  var updates = {};
+  var updateData = {"code":program,
+                  "i":i,
+                  "read":false};
 
-  updates['testData/'] = {"code":program, "read":false};
-  firebase.database().ref().update(updates);
+  var newKey = firebase.database().ref().push().key;
+  var update = {};
+  update['testData/unread/'+newKey] = updateData;
+
+  firebase.database().ref().update(update);
+
   $code = $("<p id='" + (i++) + "'>" + program + "</p>");
   $code.toggleClass('program-unread');
   $("#commands").prepend($code);
+
+  var read = firebase.database().ref('testData/read'+newKey);
+  read.on('value', function(snapshot) {
+    programExecuted(snapshot.val());
+  });
 }
 
 
