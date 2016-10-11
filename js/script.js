@@ -1,18 +1,13 @@
 var i = 0;
 
 $(document).ready(function(){
-	$("#center").height("7em");
-	$("#center").click(function(){
-		$("#center").toggleClass('highlighted');
-	});
-
-
 	initFireBase();
+
 });
 
 function programExecuted(data)
 {
-  console.log('executing');
+  console.log('executing '+data);
   if(data == null)
     return;
   if(data.read == true)
@@ -21,6 +16,22 @@ function programExecuted(data)
    $('#'+j).removeClass('program-unread');
    $('#'+j).addClass('program-read');
  }
+}
+
+function checkStatus(data)
+{
+  if(data == null)
+    return;
+  if(data == true)
+  {
+    $('#statusValue').text('on');
+    $('#statusValue').toggleClass('status-on');
+  }
+  else
+  {
+    $('#statusValue').text('off');
+    $('#statusValue').toggleClass('status-on');
+  }
 }
 
 function func()
@@ -38,9 +49,9 @@ function func()
 
   $code = $("<p id='" + (i++) + "'>" + program + "</p>");
   $code.toggleClass('program-unread');
-  $("#commands").prepend($code);
+  $("#commands").append($code);
 
-  var read = firebase.database().ref('testData/read'+newKey);
+  var read = firebase.database().ref('testData/read/'+newKey);
   read.on('value', function(snapshot) {
     programExecuted(snapshot.val());
   });
@@ -56,4 +67,8 @@ function initFireBase()
     storageBucket: "testproject-9ac78.appspot.com",
   };
   firebase.initializeApp(config);
+  var status = firebase.database().ref('testData/on');
+  status.on('value',function(snapshot){
+    checkStatus(snapshot.val());
+  });
 }
