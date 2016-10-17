@@ -9,7 +9,7 @@
 
 using namespace std;
 
-#define REFRESH 2
+#define REFRESH 1
 
 string currentKey;
 
@@ -96,6 +96,26 @@ CURLcode deleteData(CURL* curl, Json::Value root)
 	return res;
 }
 
+void setTime(time_t current)
+{
+	CURL* curl;
+	CURLcode res;
+
+	string value = to_string(current);
+	curl = curl_easy_init();
+	curl_easy_setopt(curl, CURLOPT_URL,"https://testproject-9ac78.firebaseio.com/testData/on.json");
+	curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");  
+	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, value.c_str());
+
+	res = curl_easy_perform(curl);
+
+	if(res != CURLE_OK)
+	{
+		fprintf(stderr, "read failed");
+	}
+}
+
+
 int main()
 {
 	CURL *curl;
@@ -108,8 +128,9 @@ int main()
 	{
 		time(&current);
 
+		setTime(current);
 		if(current - start < refresh)
-		continue;
+			continue;
 
 		Json::Value root;
 		root["empty"] = true;
@@ -129,8 +150,6 @@ int main()
 		if(root["empty"].isNull() == false)
 		{
 			cout<<".\n";
-			if(refresh < 120)
-				refresh+=2;
 			continue;
 		}
 
