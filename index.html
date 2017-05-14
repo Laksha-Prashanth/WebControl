@@ -2,54 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Laksha Prashanth</title>
 
   <!-- Bootstrap -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
   <link href="css/stylesheet.css" rel="stylesheet">
+  <style type="text/css">
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+body{
+  background:#fff;
+    font-family: Lato, sans-serif;
+    margin: 0 0 80px;
+}
+</style>
 </head>
 <body>
-
-  <nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Laksha</a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Web Control</a></li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-
+<header id="header">
+<div class="container">
+<div class="row">
+<div class="col-sm-9 col-sm-push-3">
+<h1>
+Laksha Prashanth
+</h1>
+<h2>
+WebControl
+</h2>
+</div>
+</div>
+</div>
+</header>
   <div class="container-fluid">
    <div class="row">
     <div class="col-xs-2"></div>
     <div class="col-xs-7">
-      <h1>Web Control</h1>
       <p class="description">Control my mac through the web!<br> Enter any shell command here and if the daemon is running, the command wil be executed.
       </p>
 
       <h4 class="heading">How it works</h4>
-      <p class="description">The commands given here go to a firebase database which acts as a queue. If the daemon is running, the commands are read in a sequential manner. If it has been executed, the listing is cleared and the webpage is updated. You might have noticed an obvious security flaw in it. I hope that you don't give malicious commands :)</p>
+      <p class="description">The commands given here go to a firebase database which acts as a queue. If the daemon is running, the commands are read in a sequential manner. If it has been executed, the listing is cleared and the webpage is updated. You might have noticed an obvious security flaw in it. I hope that you don't give any malicious commands :)</p>
     </div>
     <div class="col-xs-3">
     </div>
   </div>
-  <div class="row" id="status">
+  <div class="row position" id="status">
     <div class="col-xs-2">
     </div>
     <div class="col-xs-6">
